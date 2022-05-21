@@ -1,4 +1,4 @@
- /*Declaração das variaveis*/
+/*Declaração das variaveis*/
 
 /*Variaveis base*/
 var tela = document.querySelector('canvas');
@@ -17,24 +17,30 @@ var velocidadeJogo = 10;
 /*Variaveis dda Raquete P1*/
 var xRaqueteP1 = 10;
 var alturaRaquete = 70;
-var yRaqueteP1 = (tela.height - alturaRaquete) / 2;
+var yRaqueteP1 = (tela.height - alturaRaquete) / 2; /*formular para centralizar a raquete*/
 var larguraRaquete = 10;
 
+/*Variaveis dda Raquete P2*/
+var xRaqueteP2 = 580;
+var alturaRaquete = 70;
+var yRaqueteP2 = (tela.height - alturaRaquete) / 2; /*formular para centralizar a raquete*/
+var larguraRaquete = 10;
 
-
-
-
- /*Declaração das Funções*/
-
-function pintaCanvas(){
-    pintar.fillStyle = 'black';
-    pintar.fillRect(0, 0, 600, 400);
-}
+/*Declaração das Funções*/
 
 function jogo(){
 
+    pintaCanvas();
     moveBolinha();
-    desenhaRaquete();
+    desenhaRaqueteP1();
+    desenhaRaqueteP2();
+
+}
+
+function pintaCanvas(){
+
+    pintar.fillStyle = 'black';
+    pintar.fillRect(0, 0, 600, 400);
 
 }
 
@@ -45,18 +51,15 @@ function desenhaBolinha(x, y, raio){
     pintar.arc(x, y, raio, 0, 2 * Math.PI);
     pintar.fill()
 
-
 }
 
 function moveBolinha(){
 
-    pintaCanvas();
     desenhaBolinha(xBolinha, yBolinha, raio);
     colisaoBolinha();
     xBolinha += movimentoBolinhaX;
     yBolinha += movimentoBolinhaY;
-    
-        
+            
 }
 
 function colisaoBolinha(){
@@ -68,16 +71,25 @@ function colisaoBolinha(){
     if(yBolinha + raio == tela.height
         || yBolinha - raio == 0){
         movimentoBolinhaY = movimentoBolinhaY * -1;
-        }
+    }
 
 }
 
-function desenhaRaquete (){
+function desenhaRaqueteP1 (){
 
     pintar.fillStyle = 'white';
     pintar.fillRect(xRaqueteP1, yRaqueteP1, larguraRaquete, alturaRaquete);
     
 }
+
+function desenhaRaqueteP2 (){
+
+    pintar.fillStyle = 'white';
+    pintar.fillRect(xRaqueteP2, yRaqueteP2, larguraRaquete, alturaRaquete);
+    
+}
+
+
 
  /*Chamada das Funções*/
  
