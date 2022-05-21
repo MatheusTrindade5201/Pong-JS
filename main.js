@@ -7,7 +7,8 @@ var xBolinha = 300;
 var yBolinha = 200;
 var raio = 8;
 var velocidadeBolinha = 10;
-var movimentoBolinha = 1;
+var movimentoBolinhaX = 1;
+var movimentoBolinhaY = 1;
 
  /*Declaração das Funções*/
 
@@ -37,9 +38,24 @@ function moveBolinha(){
     limpaTela();
     pintaCanvas();
     desenhaBolinha(xBolinha, yBolinha, raio);
-    xBolinha += movimentoBolinha;
-    yBolinha += movimentoBolinha;
+    colisaoBolinha();
+    xBolinha += movimentoBolinhaX;
+    yBolinha += movimentoBolinhaY;
     
+        
+}
+
+function colisaoBolinha(){
+
+    if(xBolinha + raio == tela.width
+        || xBolinha - raio == 0){
+        movimentoBolinhaX = movimentoBolinhaX * -1;
+    }
+    if(yBolinha + raio == tela.height
+        || yBolinha - raio == 0){
+        movimentoBolinhaY = movimentoBolinhaY * -1;
+        }
+
 }
 
  /*Chamada das Funções*/
