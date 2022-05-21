@@ -12,16 +12,16 @@ var movimentoBolinhaX = 1;
 var movimentoBolinhaY = 1;
 
 /*Variaveis da Jogabilidade*/
-var velocidadeJogo = 10;
+var velocidadeJogo = 10; /*Quanto maior o valor, mais lento o jogo*/
 
 /*Variaveis dda Raquete P1*/
-var xRaqueteP1 = 10;
+var xRaqueteP1 = 5;
 var alturaRaquete = 70;
 var yRaqueteP1 = (tela.height - alturaRaquete) / 2; /*formular para centralizar a raquete*/
 var larguraRaquete = 10;
 
 /*Variaveis dda Raquete P2*/
-var xRaqueteP2 = 580;
+var xRaqueteP2 = 585;
 var alturaRaquete = 70;
 var yRaqueteP2 = (tela.height - alturaRaquete) / 2; /*formular para centralizar a raquete*/
 var larguraRaquete = 10;
@@ -34,6 +34,8 @@ function jogo(){
     moveBolinha();
     desenhaRaqueteP1();
     desenhaRaqueteP2();
+    colisaoBolinhaBordas();
+    colisaoRaquetes();
 
 }
 
@@ -56,13 +58,12 @@ function desenhaBolinha(x, y, raio){
 function moveBolinha(){
 
     desenhaBolinha(xBolinha, yBolinha, raio);
-    colisaoBolinha();
     xBolinha += movimentoBolinhaX;
     yBolinha += movimentoBolinhaY;
             
 }
 
-function colisaoBolinha(){
+function colisaoBolinhaBordas(){
 
     if(xBolinha + raio == tela.width
         || xBolinha - raio == 0){
@@ -89,13 +90,31 @@ function desenhaRaqueteP2 (){
     
 }
 
+function colisaoRaquetes(){
+
+    if(xBolinha - raio == xRaqueteP1 + larguraRaquete 
+        && yBolinha > yRaqueteP1
+        && yBolinha < yRaqueteP1 + alturaRaquete){
+            movimentoBolinhaX = movimentoBolinhaX * -1;
+            movimentoBolinhaY = movimentoBolinhaY * -1;
+        }
+
+    if(xBolinha + raio == xRaqueteP2
+        && yBolinha > yRaqueteP2
+        && yBolinha < yRaqueteP2 + alturaRaquete){
+            movimentoBolinhaX = movimentoBolinhaX * -1;
+            movimentoBolinhaY = movimentoBolinhaY * -1;
+        }
+
+}
+
+
 
 
  /*Chamada das Funções*/
  
- 
  setInterval(jogo, velocidadeJogo);
- desenhaRaquete();
+
 
 
 
