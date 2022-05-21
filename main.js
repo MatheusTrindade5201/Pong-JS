@@ -6,6 +6,8 @@ var pintar = tela.getContext('2d');
 var xBolinha = 300;
 var yBolinha = 200;
 var raio = 8;
+var velocidadeBolinha = 10;
+var movimentoBolinha = 1;
 
  /*Declaração das Funções*/
 
@@ -14,17 +16,36 @@ function pintaCanvas(){
     pintar.fillRect(0, 0, 600, 400);
 }
 
-function desenhaBolinha(){
+function desenhaBolinha(x, y, raio){
 
     pintar.fillStyle = 'white';
-    pintar.arc(xBolinha, yBolinha, raio, 0, 2 * Math.PI);
+    pintar.beginPath();
+    pintar.arc(x, y, raio, 0, 2 * Math.PI);
     pintar.fill()
 
 
 }
 
+function limpaTela(){
+
+    pintar.clearRect(0, 0, 600, 400);
+
+}
+
+function moveBolinha(){
+
+    limpaTela();
+    pintaCanvas();
+    desenhaBolinha(xBolinha, yBolinha, raio);
+    xBolinha += movimentoBolinha;
+    yBolinha += movimentoBolinha;
+    
+}
+
  /*Chamada das Funções*/
 
-pintaCanvas();
-desenhaBolinha();
+ setInterval(moveBolinha, velocidadeBolinha);
+
+
+
 
