@@ -12,19 +12,23 @@ var movimentoBolinhaX = 1;
 var movimentoBolinhaY = 1;
 
 /*Variaveis da Jogabilidade*/
-var velocidadeJogo = 10; /*Quanto maior o valor, mais lento o jogo*/
+var velocidadeJogo = 5; /*Quanto maior o valor, mais lento o jogo*/
 
 /*Variaveis dda Raquete P1*/
-var xRaqueteP1 = 5;
+var xRaqueteP1 = 2;
 var alturaRaquete = 70;
 var yRaqueteP1 = (tela.height - alturaRaquete) / 2; /*formular para centralizar a raquete*/
 var larguraRaquete = 10;
 
-/*Variaveis dda Raquete P2*/
-var xRaqueteP2 = 585;
+/*Variaveis da Raquete P2*/
+var xRaqueteP2 = 588;
 var alturaRaquete = 70;
 var yRaqueteP2 = (tela.height - alturaRaquete) / 2; /*formular para centralizar a raquete*/
 var larguraRaquete = 10;
+
+/*Variaveis das teclas de comando*/
+var cimaP1 = '38';
+var baixoP1 = '40';
 
 /*Declaração das Funções*/
 
@@ -36,6 +40,7 @@ function jogo(){
     desenhaRaqueteP2();
     colisaoBolinhaBordas();
     colisaoRaquetes();
+    
 
 }
 
@@ -92,20 +97,35 @@ function desenhaRaqueteP2 (){
 
 function colisaoRaquetes(){
 
-    if(xBolinha - raio == xRaqueteP1 + larguraRaquete 
+    if(xBolinha - raio < xRaqueteP1 + larguraRaquete 
         && yBolinha > yRaqueteP1
         && yBolinha < yRaqueteP1 + alturaRaquete){
+            
             movimentoBolinhaX = movimentoBolinhaX * -1;
-            movimentoBolinhaY = movimentoBolinhaY * -1;
+            
         }
 
     if(xBolinha + raio == xRaqueteP2
         && yBolinha > yRaqueteP2
         && yBolinha < yRaqueteP2 + alturaRaquete){
+            xBolinha -= 5;
             movimentoBolinhaX = movimentoBolinhaX * -1;
-            movimentoBolinhaY = movimentoBolinhaY * -1;
+            
         }
 
+}
+
+function movimentoRaqueteP1(evento){
+
+    var tecla = evento.keyCode;
+
+    if(tecla == cimaP1 && yRaqueteP1 > 0){
+        yRaqueteP1 -= 10;
+    }
+    if(tecla == baixoP1 && yRaqueteP1 + alturaRaquete < 400){
+        yRaqueteP1 += 10;
+    }
+   
 }
 
 
@@ -114,6 +134,8 @@ function colisaoRaquetes(){
  /*Chamada das Funções*/
  
  setInterval(jogo, velocidadeJogo);
+
+ document.onkeydown = movimentoRaqueteP1;
 
 
 
