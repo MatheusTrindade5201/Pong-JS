@@ -14,6 +14,7 @@ var movimentoBolinhaY = 1;
 /*Variaveis da Jogabilidade*/
 var velocidadeJogo = 5; /*Quanto maior o valor, mais lento o jogo*/
 
+
 /*Variaveis dda Raquete P1*/
 var xRaqueteP1 = 2;
 var alturaRaquete = 70;
@@ -40,7 +41,7 @@ function jogo(){
     desenhaRaqueteP2();
     colisaoBolinhaBordas();
     colisaoRaquetes();
-    
+    movimentoRaqueteP2();
 
 }
 
@@ -126,6 +127,15 @@ function movimentoRaqueteP1(evento){
         yRaqueteP1 += 10;
     }
    
+}
+
+function movimentoRaqueteP2(){
+
+    var velocidadeRaqueteOponente = (yBolinha - alturaRaquete/2)
+    yRaqueteP2 = velocidadeRaqueteOponente;
+
+    
+
 }
 
 
