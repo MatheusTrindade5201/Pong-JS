@@ -1,3 +1,3 @@
-<h1>PONG JS</h1>
+<h1 aling='center'>PONG JS</h1>
 
 
