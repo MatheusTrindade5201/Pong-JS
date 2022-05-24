@@ -52,7 +52,7 @@ function jogo(){
     mudaMargemdeErro();
     mostraPlacar();
     marcaPonto();
-    console.log(erro)
+    console.log(erro);
 
 }
 
@@ -149,10 +149,17 @@ function movimentoRaqueteP2(){
 
 function mudaMargemdeErro(){
 
-    if(xBolinha + raio == tela.width){
-        erro = margemDeErro[Math.floor(Math.random()*margemDeErro.length)];
+    if(placarP1 > placarP2 && erro > 0.8){
+        erro = erro - 0.01;
+        if(erro == 0.8){
+            erro = 0.8;
+        }
     }
 
+    if(placarP2 > placarP1 && erro < 1.2){
+        erro += 0.01;
+        
+    }
 }
 
 function mostraPlacar(){
@@ -174,6 +181,8 @@ function marcaPonto(){
     }
 
 }
+
+
 
 
 
