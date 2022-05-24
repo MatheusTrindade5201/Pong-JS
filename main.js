@@ -34,6 +34,10 @@ var larguraRaquete = 10;
 var cimaP1 = '38';
 var baixoP1 = '40';
 
+/*Variaveis do placar*/
+var placarP1 = 0;
+var placarP2 = 0;
+
 /*Declaração das Funções*/
 
 function jogo(){
@@ -152,9 +156,7 @@ function mostraPlacar(){
 
     pintar.fillStyle = 'white';
     pintar.font = "30px serif";
-    pintar.fillText('1 - 1', 270, 30, 50)
-
-
+    pintar.fillText(placarP1 + ' - ' + placarP2, 270, 30, 50)
 
 }
 
