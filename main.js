@@ -52,7 +52,7 @@ function jogo(){
     mudaMargemdeErro();
     mostraPlacar();
     marcaPonto();
-    console.log(erro);
+    impedeSaidaDaBola();
 
 }
 
@@ -182,6 +182,14 @@ function marcaPonto(){
 
 }
 
+function impedeSaidaDaBola(){
+
+    if(xBolinha < 0 || xBolinha > tela.width){
+        xBolinha = 300;
+        yBolinha = 200;
+    }
+
+}
 
 
 
