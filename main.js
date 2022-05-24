@@ -12,7 +12,9 @@ var movimentoBolinhaX = 1;
 var movimentoBolinhaY = 1;
 
 /*Variaveis da Jogabilidade*/
-var velocidadeJogo = 5; /*Quanto maior o valor, mais lento o jogo*/
+var velocidadeJogo = 0.5; /*Quanto maior o valor, mais lento o jogo*/
+var margemDeErro = [0.8];
+var erro = 0.8;
 
 
 /*Variaveis dda Raquete P1*/
@@ -20,6 +22,7 @@ var xRaqueteP1 = 2;
 var alturaRaquete = 70;
 var yRaqueteP1 = (tela.height - alturaRaquete) / 2; /*formular para centralizar a raquete*/
 var larguraRaquete = 10;
+var velocidadeRaqueteP1 = 15;
 
 /*Variaveis da Raquete P2*/
 var xRaqueteP2 = 588;
@@ -42,7 +45,8 @@ function jogo(){
     colisaoBolinhaBordas();
     colisaoRaquetes();
     movimentoRaqueteP2();
-
+    mudaMargemdeErro();
+    mostraPlacar();
 }
 
 function pintaCanvas(){
@@ -121,10 +125,10 @@ function movimentoRaqueteP1(evento){
     var tecla = evento.keyCode;
 
     if(tecla == cimaP1 && yRaqueteP1 > 0){
-        yRaqueteP1 -= 10;
+        yRaqueteP1 -= velocidadeRaqueteP1;
     }
     if(tecla == baixoP1 && yRaqueteP1 + alturaRaquete < 400){
-        yRaqueteP1 += 10;
+        yRaqueteP1 += velocidadeRaqueteP1 ;
     }
    
 }
@@ -132,9 +136,25 @@ function movimentoRaqueteP1(evento){
 function movimentoRaqueteP2(){
 
     var velocidadeRaqueteOponente = (yBolinha - alturaRaquete/2)
-    yRaqueteP2 = velocidadeRaqueteOponente;
+    yRaqueteP2 = velocidadeRaqueteOponente *  erro;
 
-    
+}
+
+function mudaMargemdeErro(){
+
+    if(xBolinha + raio == tela.width - 1){
+        erro = margemDeErro[Math.floor(Math.random()*margemDeErro.length)];
+    }
+
+}
+
+function mostraPlacar(){
+
+    pintar.fillStyle = 'white';
+    pintar.font = "30px serif";
+    pintar.fillText('1 - 1', 270, 30, 50)
+
+
 
 }
 
@@ -144,6 +164,7 @@ function movimentoRaqueteP2(){
  /*Chamada das Funções*/
  
  setInterval(jogo, velocidadeJogo);
+
 
  document.onkeydown = movimentoRaqueteP1;
 
