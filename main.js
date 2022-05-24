@@ -13,7 +13,7 @@ var movimentoBolinhaY = 1;
 
 /*Variaveis da Jogabilidade*/
 var velocidadeJogo = 0.5; /*Quanto maior o valor, mais lento o jogo*/
-var margemDeErro = [0.8];
+var margemDeErro = [0.8, 1.2];
 var erro = 0.8;
 
 
@@ -51,6 +51,9 @@ function jogo(){
     movimentoRaqueteP2();
     mudaMargemdeErro();
     mostraPlacar();
+    marcaPonto();
+    console.log(erro)
+
 }
 
 function pintaCanvas(){
@@ -146,7 +149,7 @@ function movimentoRaqueteP2(){
 
 function mudaMargemdeErro(){
 
-    if(xBolinha + raio == tela.width - 1){
+    if(xBolinha + raio == tela.width){
         erro = margemDeErro[Math.floor(Math.random()*margemDeErro.length)];
     }
 
@@ -160,6 +163,17 @@ function mostraPlacar(){
 
 }
 
+function marcaPonto(){
+
+    if(xBolinha - raio == 0){
+        placarP2++;
+    }
+
+    if(xBolinha + raio == tela.width){
+        placarP1++;
+    }
+
+}
 
 
 
